@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+  <style>
+      .container{
+          margin: 4%;
+      }
+      .header{
+          margin: 15px;
+      }
+      .inputfield{
+          margin: 3%;
+      }
+  </style>
+</head>
+<body ng-app="BlankApp" ng-cloak>
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+  
+  <!-- Your application bootstrap  -->
+  <script src="script.js"></script>
+
+  <div ng-controller="colorpalatte">
+  <div layout>
+      <div flex="65" class="container">
+        <div class="header">
+            Palette
+        </div>
+        <div layout="column">
+            <div layout="row"  ng-repeat="id in colors" ng-if="{{id.row < $scope.numberofrows}}">
+                <div flex="20" class="divcolor" ng-click="selectedFrame()" ng-style="{background:{{id.color}}};width:50px;height:50px;">
+                        $scope.numberofrows
+                </div>
+            </div>
+            <div layout = "row" ng-repeat="id in colors" ng-if="{{id.row = $scope.numberofrows && id.cols <= $scope.numberofcolumns}}">
+                <div class="divcolor" flex="20"  ng-click="selectedFrame()" ng-style="{background:{{id.color}}};width:50px;height:50px;">
+                        $scope.numberofcolumns
+                </div>
+            </div>
+        </div>
+      </div>
+      <div flex="35" class="container">
+        <div class="header">
+            Config Panel
+        </div>
+        <div class="input">
+            <input type="number" name="num" class="inputfield" ng-pattern="/^-?[0-9][^\.]*$/" ng-value={{$scope.colorpalatteNumber}}>
+            <div>
+                <md-button class="md-raised md-primary" ng-click="generate()">Generate</md-button>
+                <md-button class="md-accent md-raised " ng-click="remove()">Clear</md-button>
+            </div>
+        </div>
+        <div class="view">
+            <div class="selected" ng-if="$scope.selectedFrame" ng-style="{background:$scope.color}">
+                
+            </div>
+            <div class="selectedText">
+                <span ng-if="$scope.selectedFrame">Hex : {{$scope.color}}</span>
+            </div>
+        </div>
+      </div>
+  </div>
+  </div>
+
+
+</body>
+</html>
